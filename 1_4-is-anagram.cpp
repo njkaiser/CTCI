@@ -1,6 +1,5 @@
-// Cracking the Coding Interview, Problem 1.1
-// Implement an algorithm to determine if a string has all unique characters. What
-// if you can not use additional data structures?
+// Cracking the Coding Interview, Problem 1.4
+// Write a method to decide if two strings are anagrams or not.
 
 #include <iostream>
 #include <string>
