@@ -27,38 +27,46 @@ void remove_node(Node* N) {
   // only works with nodes NOT first/last in the list (per the wording of the question)
   N->data = N->next->data;
   Node* tmp = N->next->next;
-  // delete N->next;
+  delete N->next;
   N->next = tmp;
 }
 
 
 int main(int argc, char** argv)
 {
-  Node a('a');
-  Node b('b');
-  Node c('c');
-  Node d('d');
-  Node e('e');
-  a.next = &b;
-  b.next = &c;
-  c.next = &d;
-  d.next = &e;
+  Node* a = new Node('a');
+  Node* b = new Node('b');
+  Node* c = new Node('c');
+  Node* d = new Node('d');
+  Node* e = new Node('e');
+  a->next = b;
+  b->next = c;
+  c->next = d;
+  d->next = e;
 
   cout << "before removal:" << endl;
-  Node *currnode = &a;
+  Node *currnode = a;
   while(currnode != NULL) {
     cout << currnode->data << endl;
     currnode = currnode->next;
   }
 
-  remove_node(&c);
+  remove_node(c);
 
   cout << "after removal:" << endl;
-  currnode = &a;
+  currnode = a;
   while(currnode != NULL) {
     cout << currnode->data << endl;
     currnode = currnode->next;
   }
+
+  currnode = a;
+  while(currnode != NULL) {
+    Node *tmp = currnode->next;
+    delete currnode;
+    currnode = tmp;
+  }
+  delete a, b, c, d, e;
 
   return 0;
 }
