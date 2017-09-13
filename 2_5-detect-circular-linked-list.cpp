@@ -38,6 +38,24 @@ Node* detect_circular(Node* head) {
 }
 
 
+Node* tortoise_and_hare(Node* head) {
+  Node* slow = head->next;
+  Node* fast = head->next->next;
+  while(fast != slow) {
+    // cout << "tortoise, hare: " << slow->data << ", " << fast->data << endl;
+    slow = slow->next;
+    fast = fast->next->next;
+  }
+  slow = head;
+  while(fast != slow) {
+    slow = slow->next;
+    fast = fast->next;
+  }
+  return slow;
+  // return NULL;
+}
+
+
 int main(int argc, char** argv)
 {
   Node* a = new Node('a');
@@ -58,8 +76,10 @@ int main(int argc, char** argv)
   //   currnode = currnode->next;
   // }
 
-  Node* answer = detect_circular(a);
-  cout << "ANSWER: " << answer->data << endl;
+  Node* answer1 = detect_circular(a);
+  Node* answer2 = tortoise_and_hare(a);
+  cout << "method 1 answer: " << answer1->data << endl;
+  cout << "method 2 answer: " << answer2->data << endl;
 
   // cout << "after removal:" << endl;
   // currnode = a;
